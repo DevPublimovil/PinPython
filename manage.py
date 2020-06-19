@@ -11,7 +11,7 @@ with open('servers.txt', mode='r', encoding='utf-8') as listserver:
         servers.append(itemserver.split()[0])
 
 for ipaddress in servers:
-    status,result = sp.getstatusoutput("ping -n 4 " + ipaddress)
+    status,result = sp.getstatusoutput("ping -c 4 " + ipaddress)
     if status == 0:
         with open("control.txt", "a") as text_file:
             text_file.write(ipaddress + " Funciona correctamente - " + str(timeping) + "\n")
