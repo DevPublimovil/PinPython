@@ -1,0 +1,4 @@
+192.168.50.163 Funciona correctamente - 2020-06-19 10:53:44.612565
+192.168.50.147 Funciona correctamente - 2020-06-19 10:53:44.612565
+192.168.50.163 Funciona correctamente - 2020-06-19 10:55:02.989437
+192.168.50.147 Funciona correctamente - 2020-06-19 10:55:02.989437
