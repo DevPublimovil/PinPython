@@ -1,5 +1,5 @@
 import smtplib
-import os
+import subprocess as sp
 import datetime
 
 servers = []
@@ -11,8 +11,8 @@ with open('servers.txt', mode='r', encoding='utf-8') as listserver:
         servers.append(itemserver.split()[0])
 
 for ipaddress in servers:
-    response = os.system('ping -n 4 {}' . format(ipaddress))
-    if response == 0:
+    status,result = sp.getstatusoutput("ping -n 4 " + ipaddress)
+    if status == 0:
         with open("control.txt", "a") as text_file:
             text_file.write(ipaddress + " Funciona correctamente - " + str(timeping) + "\n")
     else:
@@ -20,8 +20,8 @@ for ipaddress in servers:
         with open("control.txt", "a") as text_file:
             text_file.write(ipaddress + " No funciona correctamente - " + str(timeping) + "\n")
 
-sender = "script <python@grupopublimovil.com>"
-receiver = "for person <help.desk@grupopublimovil.com>"
+sender = "server.status@grupopublimovil.com"
+receiver = "help.desk@grupopublimovil.com"
 separator = ',\n'
 serv = separator.join(serverisdown)
 message = f"""\
@@ -32,7 +32,8 @@ From: {sender}
 Los siguientes servidores no responden \n
 {serv} """
 
-with smtplib.SMTP("smtp.mailtrap.io", 25) as server:
+with smtplib.SMTP("mail.grupopublimovil.net", 587) as server:
     if len(serverisdown) > 0:
-        server.login("250696872927da", "30c17c4bc21b1f")
+        server.starttls()
+        server.login("server.status@grupopublimovil.com", "4ppM0v1l")
         server.sendmail(sender, receiver, message)

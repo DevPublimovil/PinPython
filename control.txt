@@ -1,2 +1,0 @@
-192.168.50.163 Funciona correctamente - 2020-06-19 11:44:41.913419
-192.168.50.147 Funciona correctamente - 2020-06-19 11:44:41.913419
