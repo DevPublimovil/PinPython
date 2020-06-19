@@ -2,9 +2,13 @@ import smtplib
 import os
 import datetime
 
-servers = ['192.168.50.163','192.168.50.147']
+servers = []
 serverisdown = []
 timeping = datetime.datetime.now()
+
+with open('servers.txt', mode='r', encoding='utf-8') as listserver:
+    for itemserver in listserver:
+        servers.append(itemserver.split()[0])
 
 for ipaddress in servers:
     response = os.system('ping -n 4 {}' . format(ipaddress))
